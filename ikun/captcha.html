@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>CAPTCHA</title>
+    <script src="captcha.js" type="application/javascript"></script>
+    <style>
+        #main{
+            border-radius: 3px;
+            position: absolute;
+            top: 50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+        }
+        #exit{
+            color:#0077d4;
+        }
+        #exit:hover{
+            color: #64e67a;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <h3>请验证你不是小黑子</h3>
+    <h4>请说出图中是什么：</h4>
+    <label>
+        <input type="text" id="answer">
+    </label><br>
+    <img src="res/cap/0.jpeg" alt="" id="p" width="250" height="250" style="margin-top: 10px"><br>
+    <button onclick="reset()" style="background: lightblue;border: none">我不会</button>
+    <button onclick="finish()" style="background: lightgreen;border: none">完成</button><br>
+    <span onclick="window.close()" id="exit" style="margin-top: 10px;font-size: 10px">我是纯路人</span>
+    <h3 style="color: red;display: none;margin-top: 10px" id="err">验证码错误</h3>
+</div>
+</body>
+</html>

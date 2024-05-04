@@ -1,0 +1,9 @@
+.idea
+node_modules
+ws
+webres/css/.sass-cache
+
+package-lock.json
+package.json
+*.css.map
+.gitignore

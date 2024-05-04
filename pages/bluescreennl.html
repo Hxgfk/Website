@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>:(</title>
+    <style>
+        *{
+            cursor: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+
+        body{
+            background: #0077d4;
+            color: white;
+            margin-left: 50px;
+        }
+
+        .text{
+            font-size: 35px;
+        }
+
+        img{
+            width: 250px;
+            height: 250px;
+        }
+
+        a{
+            border: none;
+            width: auto;
+            height: auto;
+            color: white;
+            text-decoration: underline;
+            text-decoration-line: none !important;
+            margin-right: 30px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<p style="font-size: 250px;display: inline;">:(</p>
+<p class="text">您的电脑遇到问题，需要重新启动。</p>
+<p class="text">问题原因是不知道</p>
+<p class="text">我们只收集某些错误信息，然后为你重新启动。</p>
+<p id="time" class="text">0% 完成</p>
+<div>
+    <div style="display: inline-block;margin-left: 10px">
+        <p class="text">有关此问题的详细信息和可能的解决办法，请访问</p>
+        <a class="text"  href="http://vdse.bdstatic.com/192d9a98d782d9c74c96f09db9378d93.mp4" style="cursor: auto !important;">www.baidu.com</a>
+        <p class="text">如果致电支持人员，请向他们提供以下信息：</p>
+        <p class="text">终止代码：0x114514</p>
+    </div>
+</div>
+<script>
+    function random(a, b){
+        return (Math.random() * (a - b) + b)|0;
+    }
+
+    let time = 0;
+    function run(){
+        function p(t){
+            return t + "% 完成";
+        }
+
+        setTimeout(function (){
+            time = time+random(1, 5);
+            if (time > 100){
+                time = 0;
+            }
+            document.getElementById("time").innerHTML = p(time);
+        }, random(1000, 3000));
+
+        if (!(time === 100)){
+            setTimeout(function (){
+                run();
+            }, random(1500, 2500));
+        }
+    }
+
+    run();
+</script>
+</body>
+</html>

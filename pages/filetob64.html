@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>将文件转成base64</title>
+</head>
+<body>
+<input type="file" id="fielinput" />
+<script>
+    window.onload = function () {
+        let input = document.getElementById("fielinput");
+        if (typeof (FileReader) === 'undefined') {
+            alert("你的浏览器不支持 FileReader");
+            input.setAttribute('disabled', 'disabled');
+        } else {
+            input.addEventListener('change', parseFileToBase64, false);
+        }
+    }
+
+    function parseFileToBase64() {
+        let file = this.files[0];
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function (e) {
+            navigator.clipboard.writeText(this.result)
+            alert("转换完成，结果已写入剪切板!")
+        }
+    }
+
+</script>
+</body>
+</html>

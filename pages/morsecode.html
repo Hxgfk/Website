@@ -1,0 +1,118 @@
+<!DOCTYPEhtml>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>摩斯电码转换器</title>
+    <script>
+        let words = {
+            "A": "._",
+            "B": "_...",
+            "C": "_._.",
+            "D": "_..",
+            "E": ".",
+            "F": ".._.",
+            "G": "__.",
+            "H": "....",
+            "I": "..",
+            "J": ".___",
+            "K": "_._",
+            "L": "._..",
+            "M": "__",
+            "N": "_.",
+            "O": "___",
+            "P": ".__.",
+            "Q": "__._",
+            "R": "._.",
+            "S": "...",
+            "T": "_",
+            "U": ".._",
+            "V": "..._",
+            "W": ".__",
+            "X": "_.._",
+            "Y": "_.__",
+            "Z": "__.."
+        };
+        let numbers = {
+            "0": "_____",
+            "1": ".____",
+            "2": "..___",
+            "3": "...__",
+            "4": "...._",
+            "5": ".....",
+            "6": "_....",
+            "7": "__...",
+            "8": "___..",
+            "9": "____."
+        };
+        let others = {
+            ".": "._._._",
+            ":": "___...",
+            ",": "__.._ _",
+            ";": "_._._.",
+            "?": "..__..",
+            "=": "_..._",
+            "'": ".____.",
+            "/": "_.._.",
+            "!": "_._.____...._",
+            "_": "..__._",
+            "\"": "._.._ .",
+            "(": "_.__.",
+            ")": "_.__._",
+            "$": "..._.._",
+            "&": "....",
+            "@": ".__._.",
+            "-": "_...._"
+        };
+    </script>
+    <style>
+        #main {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        body {
+            background: black;
+        }
+    </style>
+    <script>
+        function encode() {
+            let arr = document.getElementById('text').value.toUpperCase().split("");
+            let out = "";
+            for (let i in arr) {
+                if (words[arr[i]] !== undefined) {
+                    out.concat(words[arr[i]]);
+                } else {
+                    if (numbers[arr[i]] !== undefined) {
+                        out.concat(numbers[arr[i]]);
+                    } else {
+                        if (others[arr[i]] !== undefined) {
+                            out.concat(others[arr[i]]);
+                        } else {
+                            out = "转换失败";
+                        }
+                    }
+                }
+            }
+            document.getElementById("output").innerHTML = out;
+        }
+    </script>
+</head>
+<body>
+<div id="main">
+    <div style="padding: 5px">
+        <p style="color: #ffff84">警告：不支持除英语以外的</p>
+        <label style="display: inline-block;color: black">
+            <input type="text" id="text">
+        </label>
+        <button onclick="encode()">转换为莫斯密码</button>
+        <button>翻译为英语</button>
+        <div style="color: white">
+            <p>结果：</p>
+            <p id="output"></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

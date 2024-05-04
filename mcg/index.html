@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head id="head">
+    <meta charset="UTF-8">
+    <title>MCCG</title>
+	<link href="styles.css" rel="stylesheet"/>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/CommandBase.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/Generators.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/HTMLLoader.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/Position.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/ids/command/CommandWeatherTypes.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/ids/command/SelectorArgSortValues.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/ids/entity/VillagerProfessions.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/ids/entity/VillagerTypes.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/ids/Advancements.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/ids/Biomes.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/ids/Blocks.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/ids/Dimensions.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/ids/Entities.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/ids/GameModes.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/ids/Items.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/ids/Pois.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/ids/Structures.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/loader/GetPlayerName.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/loader/SelectorPage.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/loader/Villager2.js"></script>
+    <!--BUG-->
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/nbt/NBTData.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/nbt/NBT.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/nbt/entity/Passengers.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/nbt/entity/villager/BrainMemories.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/nbt/entity/villager/Data.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/nbt/entity/villager/Gossips.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/nbt/entity/villager/Inventory.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/nbt/entity/villager/Transaction.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/nbt/entity/villager/Villager.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/packager/Selector.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/mcc/packager/Villager2.js"></script>
+    <script src="http://hxgfk.3vhost.work/webres/js/Random.js"></script>
+    <script>
+        function copy(){
+            let text = document.getElementById("output");
+            text.select();
+            document.execCommand("copy");
+            alert("复制完成");
+        }
+    </script>
+    <style>
+        @font-face {
+            font-family: minecraft;
+            src: url(mc_font.ttf) format("truetype");
+            font-weight: 400;
+            font-style: normal
+        }
+        *{
+            font-family: minecraft, serif !important;
+        }
+    </style>
+</head>
+<body style="width: 100%;height: 100%">
+<h1 class="title">MineCraftCommandGenerate</h1>
+<br><h2 class="title">Java Version</h2>
+<br><i style="font-size: 25px">注：老版本可能不通用，此网站只支持Java(>1.12.2)版，请勿用于基岩版</i>
+<p style="display: block">&nbsp;</p>
+<div class="head_select" id="selectBar" style="margin-top: 50px">
+    <div class="main-menu">
+        <!--<div class="logo">
+        </div>-->
+        <div class="menu-list">
+            <div class="dropdown">
+                <button style="background: #ff9659;border: none;padding: 16px" onclick="location.reload()">刷新</button>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">物品</button>
+                <div class="dropdown-content">
+                    <button class="select">/clear</button>
+                    <button class="select">/give</button>
+                    <button class="select">/item</button>
+                    <button class="select">/enchant</button>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">方块</button>
+                <div class="dropdown-content">
+                    <button class="select">/clone</button>
+                    <button class="select">/fill</button>
+                    <button class="select">/setblock</button>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">玩家</button>
+                <div class="dropdown-content">
+                    <button class="select" onclick="com_gamemode()">/gamemode</button>
+                    <button class="select">/gamerule</button>
+                    <button class="select">/effect</button>
+                    <button class="select">/experience</button>
+                    <button class="select">/xp</button>
+                    <button class="select" onclick="com_defaultgamemode()">/defaultgamemode</button>
+                    <button class="select" onclick="com_kick()">/kick</button>
+                    <button class="select">/playsound</button>
+                    <button class="select">/spawnpoint</button>
+                    <button class="select">/setworldspawn</button>
+                    <button class="select">/spectate</button>
+                    <button class="select">/stopsound</button>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">游戏</button>
+                <div class="dropdown-content">
+                    <button class="select">/difficulty</button>
+                    <button class="select">/time</button>
+                    <button class="select" onclick="com_locate()">/locate</button>
+                    <button class="select" onclick="com_advancement()">/advancement</button>
+                    <button class="select" onclick="com_weather()">/weather</button>
+                    <button class="select">/recipe</button>
+                    <button class="select">/particle</button>
+                    <button class="select">/worldborder</button>
+                    <button class="select" onclick="com_publish()">/publish</button>
+                    <button class="select" onclick="com_seed()">/seed</button>
+                    <button class="select" onclick="com_summon()">/summon</button>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">特殊</button>
+                <div class="dropdown-content">
+                    <button class="select">/attribute</button>
+                    <button class="select">/bossbar</button>
+                    <button class="select">/datapack</button>
+                    <button class="select">/debug</button>
+                    <button class="select">/forceload</button>
+                    <button class="select">/function</button>
+                    <button class="select">/schedule</button>
+                    <button class="select">/data</button>
+                    <button class="select" onclick="com_jfr()">/jfr</button>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">传送</button>
+                <div class="dropdown-content">
+                    <button class="select">/tp</button>
+                    <button class="select">/spreadplayers</button>
+                    <button class="select">/teleport</button>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">消息</button>
+                <div class="dropdown-content">
+                    <button class="select" onclick="com_me()">/me</button>
+                    <button class="select">/title</button>
+                    <button class="select" onclick="com_msg()">/msg</button>
+                    <button class="select" onclick="com_tell()">/tell</button>
+                    <button class="select" onclick="com_w()">/w</button>
+                    <button class="select" onclick=com_say()>/say</button>
+                    <button class="select">/teammsg</button>
+                    <button class="select">/tm</button>
+                    <button class="select">/tellraw</button>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">其他</button>
+                <div class="dropdown-content">
+                    <button class="select">/scoreboard</button>
+                    <button class="select">/team</button>
+                    <button class="select">/trigger</button>
+                    <button class="select" onclick="com_tag()">/tag</button>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">功能</button>
+                <div class="dropdown-content">
+                    <button class="select" onclick="com_selector()">自定义选择器</button>
+                    <button class="select" style="width: 120px" onclick="com_nbt_villager()">自定义村民交易(单个交易)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<h2>填写参数区</h2>
+<div style="margin-top: 10px">
+    <div id="gen">
+        <h1>请选择指令</h1>
+    </div>
+</div>
+<h2>指令生成区</h2>
+<div style="margin-top: 10px">
+    <button onclick="copy()" id="copy">复制指令</button>
+    <button onclick="document.getElementById('output').value=''" id="clear">清空指令框</button>
+    <label>
+        <textarea id="output"></textarea>
+    </label>
+</div>
+<br><i>开发：hxgfk</i>
+</body>
+</html>

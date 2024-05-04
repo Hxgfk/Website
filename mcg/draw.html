@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Draw</title>
+    <script type="application/javascript" src="main.js"></script>
+    <link type="text/css" rel="stylesheet" href="Styles.css">
+    <script type="application/javascript"></script>
+</head>
+<body id="body">
+<p>村民职业:</p>
+<select id="profession">
+    <option>农民</option>
+    <option>盔甲匠</option>
+    <option>屠夫</option>
+    <option>制图师</option>
+    <option>牧师</option>
+    <option>渔夫</option>
+    <option>制箭师</option>
+    <option>傻子</option>
+    <option>皮匠</option>
+    <option>图书管理员</option>
+    <option>石匠</option>
+    <option>失业</option>
+    <option>牧羊人</option>
+    <option>工具匠</option>
+    <option>武器匠</option>
+</select>
+<p>村民类型：</p>
+<p>#: 指的是村民在生物群系的衣服类型</p>
+<select id="type">
+    <option>平原</option>
+    <option>沙漠</option>
+    <option>丛林</option>
+    <option>热带草原</option>
+    <option>积雪平原</option>
+    <option>沼泽</option>
+    <option>针叶林</option>
+</select>
+<p>村民职业等级（最大不可超过5）</p>
+<input id="level" type="number">
+<p>村民交易：</p>
+<button class="add" onclick="let l = new Villager2Loads();l.addTranscation();AlertWindowConstructor(document.getElementById('window'));">添加交易</button>
+<button class='data' onclick='let l = new Villager2Loads();l.data()'>全部数据</button>
+<button style='display: inline;' class='delete' onclick='let l = new Villager2Loads();l.removeAll()'>删除所有</button>
+<div id="transactionList"></div>
+<div id="gossipsList"></div>
+<div id="gossipsWindow" style="display: none">
+    <div id="modal" class="modal">
+        <div id="gossipsWindowHeader">
+            <div class="title">
+                <p class="important">请输入数据</p>
+            </div>
+        </div>
+        <div class="content">
+        </div>
+    </div>
+</div>
+</body>
+</html>

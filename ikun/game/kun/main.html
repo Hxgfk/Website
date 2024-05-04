@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh" style="width: 100%;height: 100%">
+<head>
+    <meta charset="UTF-8">
+    <title>IKun Game</title>
+    <link href="MainGame.css" rel="stylesheet">
+    <script src="Controller.js"></script>
+    <script src="Action.js"></script>
+</head>
+<body style="width: 100%;height: 100%;">
+<div id="main">
+    <img src="http://hxgfk.3vhost.work/ikun/game/publicres/wall.jpg" style="width: 100%;height: 100%" alt="wall">
+    <div style="left: 7px;top: 400px;" id="actor">
+        <img src="kun.png" alt="actor">
+    </div>
+    <div id="controls">
+        <button id="left" onclick="left()" type="button"><-</button>
+        <button id="jump" onclick="jump()" type="button">_</button>
+        <button id="right" onclick="right()" type="button">-></button>
+    </div>
+</div>
+</body>
+<script src="Controller.js"></script>
+<script src="Action.js"></script>
+<script>
+    document.getElementById("left").disabled = false
+    document.getElementById("jump").disabled = false
+    document.getElementById("right").disabled = false
+    reget()
+</script>
+</html>

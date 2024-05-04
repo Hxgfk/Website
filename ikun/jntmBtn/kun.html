@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        let j = new Audio("jntm/j.mp3");
+        let n = new Audio("jntm/n.mp3");
+        let t = new Audio("jntm/t.mp3");
+        let m = new Audio("jntm/m.mp3");
+        document.onkeydown = function (event) {
+            switch (event.key) {
+                case "j":
+                    j.play();
+                    break;
+                case "n":
+                    n.play();
+                    break;
+                case "t":
+                    t.play();
+                    break;
+                case "m":
+                    m.play();
+                    break;
+            }
+        }
+    </script>
+</head>
+<body>
+<button onclick="j.play()" style="width: 100px;height: 100px">J</button>
+<button onclick="n.play()" style="width: 100px;height: 100px">N</button>
+<button onclick="t.play()" style="width: 100px;height: 100px">T</button>
+<button onclick="m.play()" style="width: 100px;height: 100px">M</button>
+<script>
+    alert("电脑版可以按J,N,T,M键");
+</script>
+</body>
+</html>

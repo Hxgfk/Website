@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Ball</title>
+    <style>
+        #particle {
+            background-color: #1766aa;
+            margin: 20px;
+            border: 5px solid #333;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            box-sizing: border-box;
+            /*Animation*/
+            animation-timing-function: linear;
+            animation-delay: 1s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-fill-mode: none;
+            animation-play-state: running;
+            animation-name: slidein;
+        }
+
+        .view{
+            width: 100%;
+            overflow: hidden;
+            height: 200px;
+            background: black;
+        }
+
+        body, html{
+            width: 100%;
+            height: 100%;
+        }
+
+        @-webkit-keyframes slidein {
+            from{
+                margin-left: -20%;
+            }
+            to{
+                margin-left: 100%;
+            }
+        }
+
+        #div1{
+            width: 100%;
+            height: 280px;
+            top: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: #0077d4 2px solid;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <div class="view">
+        <div id="particle" style="animation-duration: 0.5s;"></div>
+    </div>
+    <div style="left: 50%;position: absolute">
+        <p id="ds">Set Speed(Now 0.5):</p>
+        <input id="speed" type="number">
+        <button onclick="setParticleSpeed()">Finish</button>
+    </div>
+</div>
+<script>
+    function setParticleSpeed(){
+        let s = document.getElementById("speed").value;
+        document.getElementById("particle").style.animationDuration = s+"s";
+        document.getElementById("ds").innerHTML = "Set Speed(Now "+s+"):";
+    }
+    document.onkeydown=function (ev) {
+        if (ev.key === "Enter"){
+            setParticleSpeed();
+        }
+    };
+</script>
+</body>
+</html>

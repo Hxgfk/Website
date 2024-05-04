@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>开团</title>
+    <style>
+        img{
+            width: inherit;
+            height: inherit;
+        }
+        .u{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h1>点击图片即可下载</h1>
+    <a href="http://hxgfk.3vhost.work/ikun/index.html"><h2>返回</h2></a>
+</div>
+<div id="download"></div>
+<script>
+    let path = [
+        "img/52455677521625230941668230668243.jpg",
+        "img/52455677521625230941668230668415.jpg",
+        "img/52455677521625230941668230668581.jpg",
+        "img/52455677521625230941668230668731.jpg",
+        "img/52455677521625230941668230668999.jpg",
+        "img/52455677521625230941668230669149.jpg",
+        "img/52455677521625230941668230669332.jpg",
+        "img/emotion_download_1665116377365.jpeg",
+        "img/emotion_download_1665409011723.jpeg",
+        "img/emotion_download_1665921824933.jpeg",
+        "img/emotion_download_1666533259514.jpeg",
+        "img/emotion_download_1666533268178.jpeg",
+        "img/emotion_download_1666533270429.jpeg",
+        "img/emotion_download_1666533272382.jpeg",
+        "img/emotion_download_1666533275126.jpeg",
+        "img/emotion_download_1666533278225.jpeg",
+        "img/emotion_download_1666533282067.jpeg",
+        "img/emotion_download_1666709016303.jpeg",
+        "img/emotion_download_1666709017871.jpeg",
+        "img/emotion_download_1666709027498.jpeg",
+        "img/emotion_download_1666709035631.gif",
+        "img/emotion_download_1666709427343.jpeg",
+        "img/emotion_download_1666709429946.jpeg",
+        "img/emotion_download_1666709432069.jpeg",
+        "img/emotion_download_1666709435823.jpeg",
+        "img/emotion_download_1666709441880.jpeg",
+        "img/emotion_download_1666709449055.jpeg",
+        "img/emotion_download_1666709452707.jpeg",
+        "img/emotion_download_1666709454541.jpeg",
+        "img/emotion_download_1666710150784.jpeg",
+        "img/emotion_download_1666799777402.jpeg",
+        "img/emotion_download_1666878294439.jpeg",
+        "img/emotion_download_1666878300462.jpeg",
+        "img/emotion_download_1666878308197.jpeg",
+        "img/emotion_download_1666884530470.jpeg",
+        "img/emotion_download_1666884533693.jpeg",
+        "img/emotion_download_1667010721698.jpeg",
+        "img/emotion_download_1667049026683.jpeg",
+        "img/emotion_download_1667633364391.jpeg",
+        "img/emotion_download_1667649815235.jpeg",
+        "img/emotion_download_1668315387022.jpeg",
+        "img/emotion_download_1668315664761.jpeg",
+        "img/emotion_download_1668326998875.jpeg",
+        "img/emotion_download_1668327009426.jpeg",
+        "img/emotion_download_1668327015797.jpeg",
+        "img/emotion_download_1668327018208.jpeg",
+        "img/emotion_download_1668327021210.jpeg",
+        "img/emotion_download_1668327025766.jpeg",
+        "img/emotion_download_1668327034263.jpeg",
+        "img/emotion_download_1668337854451.jpeg",
+        "img/emotion_download_1668337943546.jpeg",
+        "img/emotion_download_1668337946851.jpeg",
+        "img/emotion_download_1668339526605.jpeg",
+        "img/emotion_download_1668607131040.jpeg",
+        "img/emotion_download_1669126855176.jpeg",
+        "img/emotion_download_1669126862345.jpeg",
+        "img/emotion_download_1669126872163.jpeg",
+        "img/emotion_download_1669126874793.jpeg",
+        "img/emotion_download_1669126877671.gif",
+        "img/emotion_download_1669126882879.jpeg",
+        "img/emotion_download_1669126885531.jpeg",
+        "img/emotion_download_1669708849949.gif",
+        "img/emotion_download_1669788784174.jpeg",
+        "img/emotion_download_1669853426191.jpeg",
+        "img/emotion_download_1670040847567.jpeg",
+        "img/emotion_download_1670040851474.jpeg",
+        "img/emotion_download_1670040853116.jpeg",
+        "img/emotion_download_1670059632230.jpeg",
+        "img/emotion_download_1670059685487.jpeg",
+        "img/emotion_download_1670059711160.jpeg",
+        "img/emotion_download_1670066619051.jpeg",
+        "img/emotion_download_1670066623601.jpeg",
+        "img/emotion_download_1670113005724.jpeg",
+        "img/emotion_download_1670114052238.jpeg",
+        "img/emotion_download_1670115453576.jpeg",
+        "img/emotion_download_1670115455527.jpeg",
+        "img/emotion_download_1670115460828.jpeg",
+        "img/emotion_download_1670128279671.jpeg",
+        "img/emotion_download_1670128603730.jpeg",
+        "img/emotion_download_1670128821792.jpeg",
+        "img/emotion_download_1670137347835.jpeg",
+        "img/emotion_download_1670137368271.jpeg",
+        "img/emotion_download_1670139921231.jpeg",
+        "img/emotion_download_1670139923931.jpeg",
+        "img/emotion_download_1670151946967.jpeg",
+        "img/emotion_download_1670151954634.jpeg",
+        "img/emotion_download_1670423478026.gif",
+        "img/emotion_download_1670423538009.jpeg",
+        "img/emotion_download_1670423539928.jpeg",
+        "img/emotion_download_1670539145011.jpeg",
+        "img/emotion_download_1670539148412.jpeg",
+        "img/emotion_download_1670581543022.jpeg",
+        "img/emotion_download_1670596711909.jpeg",
+        "img/emotion_download_1670596843621.jpeg",
+        "img/emotion_download_1670647166817.jpeg",
+        "img/emotion_download_1670658671832.jpeg",
+        "img/emotion_download_1670667500230.jpeg",
+        "img/emotion_download_1670668558829.jpeg",
+        "img/emotion_download_1670756757812.jpeg",
+        "img/emotion_download_1671202741588.jpeg",
+        "img/emotion_download_1671202764440.jpeg",
+        "img/emotion_download_1671289846367.jpeg",
+        "img/emotion_download_1671338832180.jpeg",
+        "img/emotion_download_1671338837378.jpeg",
+        "img/emotion_download_1671338846647.jpeg",
+        "img/emotion_download_1671338850484.jpeg",
+        "img/emotion_download_1671338855352.jpeg",
+        "img/emotion_download_1671338863769.jpeg",
+        "img/emotion_download_1671338867687.jpeg",
+        "img/emotion_download_1671339950416.jpeg",
+        "img/emotion_download_1671347357611.gif",
+        "img/emotion_download_1671360885092.jpeg",
+        "img/emotion_download_1671361150014.jpeg",
+        "img/emotion_download_1671361166632.jpeg",
+        "img/emotion_download_1671361171405.jpeg",
+        "img/emotion_download_1671419447091.jpeg",
+        "img/emotion_download_1671425617115.jpeg",
+        "img/emotion_download_1671425753617.jpeg",
+        "img/emotion_download_1671425938291.jpeg",
+        "img/emotion_download_1671425939697.jpeg",
+        "img/emotion_download_1671425944395.jpeg",
+        "img/emotion_download_1671425946878.jpeg",
+        "img/emotion_download_1671425954276.jpeg",
+        "img/emotion_download_1671500787724.gif",
+        "img/emotion_download_1671590008757.jpeg",
+        "img/emotion_download_1671590016357.jpeg",
+        "img/emotion_download_1671702137683.jpeg",
+        "img/emotion_download_1671702139051.jpeg",
+        "img/emotion_download_1671942130112.jpeg",
+        "img/emotion_download_1671942137778.jpeg",
+        "img/emotion_download_1671942139952.jpeg",
+        "img/emotion_download_1672010998538.jpeg",
+        "img/emotion_download_1672011011397.jpeg",
+        "img/emotion_download_1672018489844.jpeg",
+        "img/emotion_download_1672018494514.jpeg",
+        "img/emotion_download_1672027199445.jpeg",
+        "img/emotion_download_1672027204694.jpeg",
+        "img/emotion_download_1672027206630.jpeg",
+        "img/emotion_download_1672027218275.jpeg",
+        "img/emotion_download_1672027226778.jpeg",
+        "img/emotion_download_1672027228393.jpeg",
+        "img/emotion_download_1672027232844.jpeg",
+        "img/emotion_download_1672027238498.jpeg",
+        "img/emotion_download_1672028799436.jpeg",
+        "img/emotion_download_1672032144119.jpeg",
+        "img/emotion_download_1672034441350.jpeg",
+        "img/emotion_download_1672050071374.jpeg",
+        "img/emotion_download_1672050335340.jpeg",
+        "img/emotion_download_1672050341144.gif",
+        "img/emotion_download_1672050343792.jpeg",
+        "img/emotion_download_1672055290881.jpeg",
+        "img/emotion_download_1672055320004.jpeg",
+        "img/emotion_download_1672064327701.gif",
+        "img/emotion_download_1672064361341.jpeg",
+        "img/emotion_download_1672064404633.jpeg",
+        "img/emotion_download_1672064406977.jpeg",
+        "img/emotion_download_1672113933821.jpeg",
+        "img/emotion_download_1672114953158.jpeg",
+        "img/emotion_download_1672116468668.jpeg",
+        "img/emotion_download_1672142425853.jpeg",
+        "img/emotion_download_1672153174803.jpeg",
+        "img/emotion_download_1672153192105.jpeg"
+    ];
+    let area = document.getElementById("download");
+    function l(p){
+        return "<a href=\""+p+"\" download class='u'><img src=\""+p+"\" alt=''></a>";
+    }
+    function a(e){
+        area.innerHTML = area.innerHTML + e;
+    }
+    for (let i in path){
+        setTimeout(function () {
+            a(l(path[i]));
+        }, 500);
+    }
+</script>
+</body>
+</html>
