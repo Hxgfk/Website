@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>what's it?</title>
+    <style>
+        button,video,body,html {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+        #b {
+            border: none;
+            background: none;
+            font-size: 50px;
+        }
+
+        /*video::-webkit-media-controls {
+            display: none !important;
+        }*/
+    </style>
+    <script>
+        function r(t) {
+            t.style.display = "none";
+            let e_v = document.getElementById("v");
+            e_v.style.display = "block";
+            e_v.play()
+        }
+    </script>
+</head>
+<body>
+<button id="b" onclick="r(this)">点击一下</button>
+<video src="../openres/video/nevergonnagiveyouup.mp4" style="display: none;width: 100%;height: 100%" id="v"></video>
+</body>
+</html>
