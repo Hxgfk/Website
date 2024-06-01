@@ -1,0 +1,37 @@
+$pos: 150
+
+@function getShadows($n)
+  $shadows: '#{random($pos + random(5))}vw #{random($pos)}vh #fff'
+  @for $i from 2 through $n
+    $shadows: "#{$shadows}, #{random($pos + random(5))}vw #{random($pos)}#{vh #fff}"
+  @return unquote($shadows)
+
+@keyframes moveUp
+  to
+    transform: translateY(-100vh)
+
+$duration: 7500s
+$count: 8000
+
+@for $i from 0 through 6
+  $duration: $duration / 2
+  $count: floor($count / 2)
+  #layer#{$i}
+    $size: #{$i}px
+    width: $size
+    height: $size
+    border-radius: 50%
+    left: 0
+    top: 0
+    position: fixed
+    box-shadow: getShadows($count)
+    animation: moveUp $duration infinite linear
+    &::after
+      content: ''
+      position: fixed
+      left: 0
+      top: 100vh
+      border-radius: inherit
+      width: inherit
+      height: inherit
+      box-shadow: inherit
