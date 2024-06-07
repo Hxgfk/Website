@@ -30,27 +30,37 @@ let caps = [
     {"answer": "大师", "captcha": "res/cap/28.jpeg"},
     {"answer": "荔枝", "captcha": "res/cap/29.jpeg"}
 ];
+
 let answer = "鸡爪";
+
 function reset() {
-    let rand = rand0ToN(caps.length-1);
+    let rand = rand0ToN(caps.length - 1);
     document.getElementById("p").src = caps[rand]["captcha"];
     answer = caps[rand]["answer"];
     console.log(answer);
 }
-let err= 0;
-function finish(){
-    if (document.getElementById("answer").value !== answer){
+
+let err = 0;
+
+function finish() {
+    if (document.getElementById("answer").value !== answer) {
         err = err + 1;
         document.getElementById("err").style.display = "block";
         new Audio("res/audio/err.mp3").play();
-        if (err > 10){
-            alert("验证码错误大于10次，你个小黑子");
-            window.close();
+        if (err > 10) {
+            let b = document.getElementById("err");
+            b.style.display = "block";
+            b.style.color = "red";
+            b.innerHTML = "验证码错误大于10次，你个小黑子";
+            setTimeout(function () {
+                window.location.href = "about:blank";
+            }, 2500);
         }
-    }else {
+    } else {
         f0()
     }
 }
+
 function f0() {
     let b = document.getElementById("err");
     b.style.display = "block";
@@ -63,6 +73,7 @@ function f0() {
         video.play();
     }, 2500);
 }
-function rand0ToN(n){
-    return Math.floor(Math.random()*Math.floor(n));
+
+function rand0ToN(n) {
+    return Math.floor(Math.random() * Math.floor(n));
 }

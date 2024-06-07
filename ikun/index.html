@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>IKUN</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="index.css" rel="stylesheet">
     <script src="captcha.js" type="application/javascript"></script>
 </head>
 <body>
 <div id="main" style="display:none;">
-    <h1 style="color: black">IKUN</h1>
+    <h1>IKUN</h1>
     <nav>
         <a class="nav-a" href="../game/eatkun">爆踩坤坤</a>
         <a class="nav-a" href="../game/cxkplane">蔡徐坤大战飞鸡</a>
         <a class="nav-a" href="../game/cxkdinogame">蔡徐坤跳跳乐</a>
+        <a class="nav-a" href="./game/kunyv">坤鱼</a>
         <a class="nav-a" href="./musicBtn/kunmusic.html">百坤争鸣</a>
         <a class="nav-a" href="./jntmBtn/kun.html">鸡你太美</a>
-        <a class="nav-a" href="./game/game.html">一些不知名小游戏</a>
-        <a class="nav-a" href="./kt/index.html">开团</a>
+        <a class="nav-a" href="./kt/">开团</a>
     </nav><br>
     <video src="./res/video/video.mp4" controls="controls" loop="loop" autoplay="autoplay" id="IKUNvideo"></video>
 </div>
@@ -29,12 +30,10 @@
     <img alt="" id="p" width="250" height="250" style="margin-top: 10px" src=""><br>
     <button onclick="reset()" style="background: lightblue;border: none">我不会</button>
     <button onclick="finish()" style="background: lightgreen;border: none">完成</button><br>
-    <button onclick="window.close()" id="exit" style="margin-top: 10px;font-size: 10px">我是纯路人</button>
+    <button onclick="window.location.href = 'about:blank';" id="exit" style="margin-top: 10px;font-size: 10px">我是纯路人</button>
     <h3 style="color: red;display: none;margin-top: 10px" id="err">验证码错误</h3>
 </div>
 <script>
-    let video = document.getElementById("IKUNvideo");
-    video.play();
     let rand = rand0ToN(caps.length-1);
     document.getElementById("p").src = caps[rand]["captcha"];
     answer = caps[rand]["answer"];

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0,
                                  maximum-scale=1.0, user-scalable=no">
     <title>chrome://dino/</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="style.css" rel="stylesheet">
     <link href="style2.css" rel="stylesheet">
     <link href="style3.css" rel="stylesheet">
@@ -15,6 +16,7 @@
     <script src="script2.js"></script>
     <script src="script3.js"></script>
     <script src="script4.js"></script>
+    <script src="cheat.js"></script>
 </head>
 <body id="t" class="neterror" style="font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 75%" jstcache="0">
 <div id="main-frame-error" class="interstitial-wrapper" jstcache="0">
@@ -121,10 +123,11 @@
         </div>
     </div>
     <div role="application" tabindex="0" title="Dino game, play" class="runner-container">
-        <canvas class="runner-canvas" width="704" height="300" style="width: 352px; height: 150px;"></canvas>
-        <button id="down-button">蹲下</button>
+        <canvas class="runner-canvas" width="704" height="300" style="width: 352px; height: 150px;" id="game_canva"></canvas>
     </div>
     <label class="slow-speed-option hidden" id="label_slow_option">
+        <button id="down-button" style="z-index: 9999;position: relative" class="hidden">蹲下</button>
+        &nbsp;
         启动慢速模式
         <input type="checkbox" title="Start slower" tabindex="0" checked="checked">
         <span class="slow-speed-toggle"></span>
@@ -169,12 +172,32 @@
         document.getElementById("label_slow_option").classList.remove("hidden");
     }
 
+    let cheat = false;
     document.body.onclick = () => {
         if (!Runner.instance_.playing) {
             clickKey(startKey);
             document.getElementById("label_slow_option").classList.remove("hidden");
+            document.getElementById("down-button").classList.remove("hidden");
+            if (cheat) {
+                initCheat();
+            }
         }
     };
+
+    document.getElementById("down-button").addEventListener("click", function (e){
+        Runner().onKeyDown(downKey);
+        setTimeout(() => {
+            Runner().onKeyUp(downKey);
+        }, 450);
+    });
+
+    document.getElementById("game_canva").addEventListener("click", function (){
+        clickKey(jumpKey);
+    });
+
+    if (new URLSearchParams(window.location.search).get("cheat") === "true") {
+        cheat = true;
+    }
 </script>
 <script src="forandroid.js"></script>
 </body>

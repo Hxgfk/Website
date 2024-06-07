@@ -20,22 +20,56 @@
             background: none;
             font-size: 50px;
         }
-
-        /*video::-webkit-media-controls {
-            display: none !important;
-        }*/
     </style>
     <script>
-        function r(t) {
-            t.style.display = "none";
-            let e_v = document.getElementById("v");
-            e_v.style.display = "block";
-            e_v.play()
+        let p = false;
+        if (new URLSearchParams(location.search).get("play") === "true") {
+            p = true;
         }
     </script>
 </head>
 <body>
 <button id="b" onclick="r(this)">点击一下</button>
-<video src="../openres/video/nevergonnagiveyouup.mp4" style="display: none;width: 100%;height: 100%" id="v"></video>
+<video src="../openres/video/nevergonnagiveyouup.mp4" style="display: none" id="v" loop></video>
+<script>
+    const button = document.getElementById("b");
+    const video = document.getElementById("v");
+
+    function r() {
+        button.style.display = "none";
+        video.style.display = "block";
+        setTimeout(function () {
+            video.play();
+        }, 500);
+    }
+
+    video.addEventListener("loadeddata", function () {
+        if (p) {
+            r();
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        let timeinv = setInterval(function () {
+            if (p) {
+                video.play()
+                clearTimeout(timeinv)
+            }else {
+                clearTimeout(timeinv)
+            }
+        }, 1);
+    });
+
+    document.addEventListener("click", function () {
+        let timeinv = setInterval(function () {
+            if (p) {
+                video.play()
+                clearTimeout(timeinv)
+            }else {
+                clearTimeout(timeinv)
+            }
+        }, 1);
+    });
+</script>
 </body>
 </html>

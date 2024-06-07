@@ -1,6 +1,5 @@
 .idea
 node_modules
-ws
 openres/css/.sass-cache
 
 package-lock.json

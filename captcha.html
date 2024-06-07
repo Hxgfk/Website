@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>人机验证</title>
+    <link rel="icon" type="image/x-icon" href="cloudflareicon.ico">
+    <style>
+        * {
+            text-align: center;
+        }
+
+        #text3 {
+            font-size: 12px;
+        }
+    </style>
+    <script>
+        const redirect = new URLSearchParams(location.search).get("redirect");;
+    </script>
+</head>
+<body>
+<p></p>
+<h1>请完成人机验证</h1>
+<button onclick="captcha()">CAPTCHA</button>
+<div id="cf-turnstile">
+    <h1 style="color: red" id="text">Failed</h1>
+    <p id="text2"></p>
+</div>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback&render=explicit"></script>
+<script>
+    let text = document.getElementById("text");
+    let text2 = document.getElementById("text2");
+    function captcha() {
+        turnstile.ready(function () {
+            turnstile.render(document.getElementById("cf-turnstile"), {
+                sitekey: "0x4AAAAAAAbvCn7La_8qrIhE",
+                callback: function (token) {
+                    text.style.color = "green";
+                    text.innerHTML = "Success";
+                    text2.innerHTML = "1秒后跳转" + redirect;
+                    灌灌灌灌灌
+                }
+            });
+        });
+    }
+</script>
+<div id="text3">此页面非<a href="https://cloudflare.com">Cloudflare</a>官方页面</div>
+</body>
+</html>
