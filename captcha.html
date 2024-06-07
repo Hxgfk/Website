@@ -12,32 +12,63 @@
         #text3 {
             font-size: 12px;
         }
+
+        #text2 {
+            font-size: 20px;
+        }
+
+        .textp {
+            font-size: 15px;
+            margin: 0;
+        }
     </style>
     <script>
-        const redirect = new URLSearchParams(location.search).get("redirect");;
+        const redirect = new URLSearchParams(location.search).get("redirect");
     </script>
 </head>
 <body>
 <p></p>
 <h1>请完成人机验证</h1>
-<button onclick="captcha()">CAPTCHA</button>
+<p class="textp">失败请刷新页面重新验证</p>
+<p class="textp">验证窗口可能需要几秒钟才会出现</p>
+<button onclick="captcha(this)" style="margin-top: 10px">验证</button>
 <div id="cf-turnstile">
-    <h1 style="color: red" id="text">Failed</h1>
+    <h1 style="color: red;display: none" id="text">Failed</h1>
     <p id="text2"></p>
 </div>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback&render=explicit"></script>
 <script>
     let text = document.getElementById("text");
     let text2 = document.getElementById("text2");
-    function captcha() {
+    function captcha(e) {
+        e.disabled = true
         turnstile.ready(function () {
             turnstile.render(document.getElementById("cf-turnstile"), {
-                sitekey: "0x4AAAAAAAbvCn7La_8qrIhE",
-                callback: function (token) {
+                "sitekey": "0x4AAAAAAAbvCn7La_8qrIhE",
+                "callback": function (token) {
+                    text.style.display = "block";
                     text.style.color = "green";
                     text.innerHTML = "Success";
                     text2.innerHTML = "1秒后跳转" + redirect;
-                    灌灌灌灌灌
+                    url = new URL(atob(redirect));
+                    url.searchParams.append("captoken", btoa(token));
+                    location.href = url.toString();
+                },
+                "error-callback": function () {
+                    text.style.display = "block";
+                    text.innerHTML = "人机验证失败";
+                },
+                "timeout-callback": function () {
+                    text.style.display = "block";
+                    text.innerHTML = "人机验证超时";
+                },
+                "unsupported-callback": function () {
+                    text.style.display = "block";
+                    text.innerHTML = "当前客户端不支持人机验证";
+                },
+                "expired-callback": function () {
+                    text.style.display = "block";
+                    text.innerHTML = "令牌过期，请刷新页面重试";
                 }
             });
         });

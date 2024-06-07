@@ -1,0 +1,57 @@
+html {
+    --bgcolor: rgb(232, 240, 254);
+    --acolor: rgb(138, 180, 248);
+    background-color: white;
+}
+
+body {
+    max-width: 1020px;
+}
+
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+a {
+    color: rgb(25, 103, 210, 1);
+}
+
+#c0 {
+    clear: both;
+    overflow: auto;
+}
+
+.project {
+    background-color: var(--bgcolor);
+    border-radius: 5px;
+    margin-top: 16px;
+    overflow: auto;
+    padding: 2px;
+}
+
+.project .title {
+    float: left;
+    font-weight: bold;
+    margin: 3px;
+}
+
+.project .homepage {
+    float: right;
+    margin: 3px;
+    text-align: end;
+}
+
+.project .license {
+    float: right;
+    margin: 3px;
+    text-align: end;
+}
+
+.title {
+    font-size: 20px;
+}
+
+.license .homepage {
+    font-size: 18px;
+}

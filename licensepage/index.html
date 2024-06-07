@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>License</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<pre id="text">
+</pre>
+<script>
+    let url_params = location.search;
+    if (url_params === '') {
+        url_params = location.hash.slice(1);
+    }
+    let license_type = new URLSearchParams(url_params).get("type");
+    let text = document.getElementById("text");
+    fetch(`./${license_type}`).then(resp => {
+        if (!resp.ok) {
+            throw new Error(`${resp.status} ${resp.statusText}`);
+        }else {
+            return resp.text();
+        }
+    }).then(text0 => {
+        text.innerHTML = String(text0);
+    }).catch(err => {
+        text.innerHTML = err;
+        text.style.color = "red";
+    })
+</script>
+</body>
+</html>
