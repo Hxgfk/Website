@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text</title>
+    <style>
+        * {
+            text-align: center;
+            font-size: 30px;
+        }
+    </style>
+    <script src="./lib/js_base64.js"></script>
+</head>
+<body>
+<pre id="text"></pre>
+<script>
+    let t = document.getElementById("text");
+    let url_params = location.search;
+    if (url_params === '') {
+        url_params = location.hash.slice(1);
+    }
+    let raw = new URLSearchParams(url_params).get("text");
+    raw = raw.replace(/'/g, "").replace(/"/g, "").replace(/\s/g, "+");
+    t.innerHTML = Base64.decode(raw);
+</script>
+</body>
+</html>
