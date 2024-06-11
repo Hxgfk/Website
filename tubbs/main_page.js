@@ -84,10 +84,10 @@ function setPage(tube) {
     }
     if (tube.hasOwnProperty("supplement")) {
         deatil_tube_supplement_text.style.display = "block";
-        for (const s of tube.supplement) {
+        for (const k of Object.keys(tube.supplement)) {
             const supplement_span_elm = document.createElement("span");
             supplement_span_elm.classList.add("supplement");
-            supplement_span_elm.innerHTML = `(${ArgTransformer.transArgs(s.to, tube)}-${s.to})&nbsp;&nbsp;&nbsp;${s.content}`;
+            supplement_span_elm.innerHTML = `(${ArgTransformer.transArgs(tube.supplement[k], tube)}-${k})&nbsp;&nbsp;&nbsp;${tube.supplement[k]}`;
             deatil_tube_supplements.appendChild(supplement_span_elm);
         }
     }else {
