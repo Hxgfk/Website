@@ -18,15 +18,11 @@
         "-Uamax": "22kV",
         "Cmax": "2000pF"
       },
-      "supplement": [
-        {
-          "to": "Iamax",
-          "content": "qmax=10%, τmax=10uS时"
-        },
-        {
-          "to": "-Uamax",
-          "content": "qmax=22%, τmax=18uS时"
-        }
+      "supplement": {
+        "Iamax": "qmax=10%, τmax=10uS时",
+        "-Uamax": "qmax=22%, τmax=18uS时"
+      },
+      "imgs": [
       ]
     },
     {
@@ -47,12 +43,10 @@
         "Izlmax": "0.1ma",
         "Pamax": "0.6W"
       },
-      "special_translation": true,
-      "translation": [
-        {
-          "name": "Iamax",
-          "value": "最大阳极电压振幅"
-        }
+      "translation": {
+        "Iamax": "最大阳极电压振幅"
+      },
+      "imgs": [
       ]
     },
     {
@@ -74,15 +68,11 @@
         "Fcmax": "300kHz",
         "Tkmin": "30S"
       },
-      "supplement": [
-        {
-          "to": "-Ua",
-          "content": "Izl=2mA时"
-        },
-        {
-          "to": "Ie",
-          "content": "Ua=100V时"
-        }
+      "supplement": {
+        "-Ua": "Izl=2mA时",
+        "Ie": "Ua=100V时"
+      },
+      "imgs": [
       ]
     },
     {
@@ -103,20 +93,15 @@
         "Iamax": "2mA",
         "flmin": "12kHz"
       },
-      "supplement": [
-        {
-          "to": "Ia",
-          "content": "τ<=12uS时"
-        },
-        {
-          "to": "-Uamax",
-          "content": "τ<=12uS时"
-        }
+      "supplement": {
+        "Ia": "τ<=12uS时",
+        "-Uamax": "τ<=12uS时"
+      },
+      "imgs": [
       ]
     },
     {
       "name": "2Z2P",
-      "others": "T（参数一样）",
       "maker": "国产",
       "type": "旁热式氧化物阴极高压整流二极管",
       "use": "高压整流",
@@ -134,7 +119,32 @@
         "Ua_acmax": "4.5kV",
         "Izlmax": "7.5mA",
         "Iamax": "100mA"
-      }
+      },
+      "imgs": [
+      ]
+    },
+    {
+      "name": "2Z2PT",
+      "maker": "国产",
+      "type": "旁热式氧化物阴极高压整流二极管",
+      "use": "高压整流",
+      "args": {
+        "Uf": "2.5V",
+        "If": "1.75±0.2A",
+        "Ie": "47.5±17.5mA",
+        "Izl": ">=6.8mA",
+        "Ut": "4.5kV",
+        "Rz": "0.6MR",
+        "C": "0.06uF",
+        "Ufmax": "2.75V",
+        "Ufmin": "2.25V",
+        "-Uamax": "12.5kV",
+        "Ua_acmax": "4.5kV",
+        "Izlmax": "7.5mA",
+        "Iamax": "100mA"
+      },
+      "imgs": [
+      ]
     },
     {
       "name": "5Z1P",
@@ -162,20 +172,15 @@
           "Ut2": "2x350V"
         }
       },
-      "supplement": [
-        {
-          "to": "Ut1",
-          "content": "滤波电路为电感输入时"
-        },
-        {
-          "to": "Ut2",
-          "content": "滤波电路为电容输入时"
-        },
-        {
-          "to": "Ie",
-          "content": "Ua=75V时"
-        }
-      ]
+      "supplement": {
+        "Ut1": "滤波电路为电感输入时",
+        "Ut2": "滤波电路为电容输入时",
+        "Ie": "Ua=75V时"
+      },
+      "translation": {
+        "Ut1": "变压器次级交流电压有效值",
+        "Ut2": "变压器次级交流电压有效值"
+      }
     },
     {
       "name": "5Z2P",
@@ -196,16 +201,10 @@
         "Izlmax": "125mA",
         "Iamax": "375mA"
       },
-      "supplement": [
-        {
-          "to": "Ie",
-          "content": "Ua=75V时"
-        },
-        {
-          "to": "ra",
-          "content": "Ua=-400V时"
-        }
-      ]
+      "supplement": {
+        "Ie": "Ua=75V时",
+        "ra": "Ua=-400V时"
+      }
     },
     {
       "name": "5Z3P",
@@ -227,19 +226,12 @@
         "Izlmax": "250mA",
         "Iamax": "750mA"
       },
-      "supplement": [
-        {
-          "to": "Izl",
-          "content": "Ra=2KR时"
-        },
-        {
-          "to": "Ie",
-          "content": "Ua=75V时"
-        },
-        {
-          "to": "ra",
-          "content": "Ua=-400V时"
-        }
+      "supplement": {
+        "Izl": "Ra=2KR时",
+        "Ie": "Ua=75V时",
+        "ra": "Ua=-400V时"
+      },
+      "imgs": [
       ]
     },
     {
@@ -263,27 +255,22 @@
         "Izlmax": "250mA",
         "Iamax": "1750mA"
       },
-      "supplement": [
-        {
-          "to": "Izl",
-          "content": "Ra=2KR时"
-        },
-        {
-          "to": "Ia1",
-          "content": "Ua1=75V, Ua2=0V时"
-        },
-        {
-          "to": "Ia2",
-          "content": "Ua2=75V, Ua1=0V时"
-        },
-        {
-          "to": "ra1",
-          "content": "Ua1=-500V, Uf=0V时"
-        },
-        {
-          "to": "ra2",
-          "content": "Ua2=-500V, Uf=0V时"
-        }
+      "supplement": {
+        "Izl": "Ra=2KR时",
+        "Ia1": "Ua1=75V, Ua2=0V时",
+        "Ia2": "Ua2=75V, Ua1=0V时",
+        "ra1": "Ua1=-500V, Uf=0V时",
+        "ra2": "Ua2=-500V, Uf=0V时"
+      },
+      "translation": {
+        "Ua1": "第一阳极电压",
+        "Ua2": "第二阳极电压",
+        "Ia1": "第一阳极电流",
+        "Ia2": "第二阳极电流",
+        "ra1": "第一阳极绝缘电阻",
+        "ra2": "第二阳极绝缘电阻"
+      },
+      "imgs": [
       ]
     },
     {
@@ -308,15 +295,11 @@
         "Iamax_all": "62mA",
         "iamax": "1250mA"
       },
-      "supplement": [
-        {
-          "to": "Ie",
-          "content": "Ua=50V时"
-        },
-        {
-          "to": "rak",
-          "content": "Ua=-500V, Uf=0V时"
-        }
+      "supplement": {
+        "Ie": "Ua=50V时",
+        "rak": "Ua=-500V, Uf=0V时"
+      },
+      "imgs": [
       ]
     },
     {
@@ -340,19 +323,12 @@
         "Iamax": "415mA",
         "iamax": "1400mA"
       },
-      "supplement": [
-        {
-          "to": "Ie",
-          "content": "Ua=50V时"
-        },
-        {
-          "to": "Izl",
-          "content": "Zt=50±10R时"
-        },
-        {
-          "to": "rak",
-          "content": "Ua=-500V, Uf=0V时"
-        }
+      "supplement": {
+        "Ie": "Ua=50V时",
+        "Izl": "Zt=50±10R时",
+        "rak": "Ua=-500V, Uf=0V时"
+      },
+      "imgs": [
       ]
     },
     {
@@ -377,11 +353,10 @@
         "Pamax": "30W",
         "Tbmax": "200℃"
       },
-      "supplement": [
-        {
-          "to": "Ue",
-          "content": "Ia=300mA时"
-        }
+      "supplement": {
+        "Ue": "Ia=300mA时"
+      },
+      "imgs": [
       ]
     },
     {
@@ -406,11 +381,10 @@
         "Pamax": "12W",
         "Tbmax": "200℃"
       },
-      "supplement": [
-        {
-          "to": "Ue",
-          "content": "Ia=180mA时"
-        }
+      "supplement": {
+        "Ue": "Ia=180mA时"
+      },
+      "imgs": [
       ]
     },
     {
@@ -431,7 +405,9 @@
         "Izlmax": "75mA",
         "Iamax": "300mA",
         "Ufkmax": "+100V, -400V"
-      }
+      },
+      "imgs": [
+      ]
     },
     {
       "name": "6Z4Q",
@@ -452,7 +428,9 @@
         "Iamax": "300mA",
         "Ufkmax": "+200V, -400V",
         "Tbmax": "170℃"
-      }
+      },
+      "imgs": [
+      ]
     },
     {
       "name": "6Z4T",
@@ -496,23 +474,13 @@
         "Izlmax": "70mA",
         "Ufkmax": "±450V"
       },
-      "supplement": [
-        {
-          "to": "Ie",
-          "content": "Ua=50V时"
-        },
-        {
-          "to": "Izl",
-          "content": "变压器次级线圈阻抗为75~225R时"
-        },
-        {
-          "to": "Ifk",
-          "content": "Ufk=-450V时"
-        },
-        {
-          "to": "ra",
-          "content": "Ua=-500V时"
-        }
+      "supplement": {
+        "Ie": "Ua=50V时",
+        "Izl": "变压器次级线圈阻抗为75~225R时",
+        "Ifk": "Ufk=-450V时",
+        "ra": "Ua=-500V时"
+      },
+      "imgs": [
       ]
     },
     {
@@ -541,15 +509,11 @@
         "Ufkmmax": "6.6kV",
         "Pamax": "5W"
       },
-      "supplement": [
-        {
-          "to": "-Uam",
-          "content": "qmax=22%, τmax=18uS时"
-        },
-        {
-          "to": "-Uammax",
-          "content": "qmax=22%, τmax=18uS时"
-        }
+      "supplement": {
+        "-Uam": "qmax=22%, τmax=18uS时",
+        "-Uammax": "qmax=22%, τmax=18uS时"
+      },
+      "imgs": [
       ]
     },
     {
@@ -572,15 +536,11 @@
         "Ufkmmax": "4.5kV",
         "flmin": "12kHz"
       },
-      "supplement": [
-        {
-          "to": "Ia",
-          "content": "τmax<=12uS时"
-        },
-        {
-          "to": "Uammax",
-          "content": "τmax=12uS时"
-        }
+      "supplement": {
+        "Ia": "τmax<=12uS时",
+        "Uammax": "τmax=12uS时"
+      },
+      "imgs": [
       ]
     },
     {
@@ -604,15 +564,11 @@
         "Pamax": "0.01W",
         "λmin": "10cm"
       },
-      "supplement": [
-        {
-          "to": "Iat",
-          "content": "Ua=100V, Ra=100KR时"
-        },
-        {
-          "to": "Ifk",
-          "content": "Ufk=25V, Rfk<=50KR时"
-        }
+      "supplement": {
+        "Iat": "Ua=100V, Ra=100KR时",
+        "Ifk": "Ufk=25V, Rfk<=50KR时"
+      },
+      "imgs": [
       ]
     },
     {
@@ -636,11 +592,10 @@
         "Ufkmax": "±90V",
         "Tamax": "150℃"
       },
-      "supplement": [
-        {
-          "to": "Ua",
-          "content": "Ia=27mA时"
-        }
+      "supplement": {
+        "Ua": "Ia=27mA时"
+      },
+      "imgs": [
       ]
     },
     {
@@ -664,22 +619,14 @@
         "Iamax1": "5mA",
         "Iamax2": "30mA"
       },
-      "special_translation": true,
-      "translation": [
-        {
-          "name": "Iamax1",
-          "value": "最大阳极电流"
-        },
-        {
-          "name": "Iamax2",
-          "value": "最大阳极电流峰值"
-        }
-      ],
-      "supplement": [
-        {
-          "to": "Iao",
-          "content": "Uf=6.3V, Ra=20KR时"
-        }
+      "translation": {
+        "Iamax1": "最大阳极电流",
+        "Iamax2": "最大阳极电流峰值"
+      },
+      "supplement": {
+        "Iao": "Uf=6.3V, Ra=20KR时"
+      },
+      "imgs": [
       ]
     },
     {
@@ -703,7 +650,9 @@
         "Izlmax": "10mA",
         "Pamax": "0.2W",
         "Fmax": "687MHz"
-      }
+      },
+      "imgs": [
+      ]
     },
     {
       "name": "6D6AQ",
@@ -727,7 +676,9 @@
         "Pamax": "0.2W",
         "Fmax": "700MHz",
         "Tbmax": "170℃"
-      }
+      },
+      "imgs": [
+      ]
     },
     {
       "name": "6D8D",
@@ -751,7 +702,9 @@
         "Izlmax": "180uA",
         "Pamax": "0.06W",
         "Ttmax": "150℃"
-      }
+      },
+      "imgs": [
+      ]
     },
     {
       "name": "6H2",
@@ -776,7 +729,9 @@
         "Ufkmax": "±350V",
         "Izlmax": "20mA",
         "Iamax": "90mA"
-      }
+      },
+      "imgs": [
+      ]
     },
     {
       "name": "6H2Q",
@@ -801,7 +756,9 @@
         "Izlmax": "20mA",
         "Iamax": "90mA",
         "Tbmax": "120℃"
-      }
+      },
+      "imgs": [
+      ]
     },
     {
       "name": "6H2T",
@@ -826,7 +783,9 @@
         "Izlmax": "20mA",
         "Iamax": "90mA",
         "Tbmax": "120℃"
-      }
+      },
+      "imgs": [
+      ]
     },
     {
       "name": "6H6P",
@@ -853,34 +812,17 @@
         "Iamax2": "50mA",
         "iamax": "176mA"
       },
-      "supplement": [
-        {
-          "to": "Izl",
-          "content": "C=8uF, Ra=11KR时"
-        },
-        {
-          "to": "Ie",
-          "content": "Ua=20V时"
-        },
-        {
-          "to": "Ifk",
-          "content": "Ufk=±10V时"
-        },
-        {
-          "to": "ra",
-          "content": "被测二极管阳极电压为-300V，未测二极管阳极电压为0V时"
-        }
-      ],
-      "special_translation": true,
-      "translation": [
-        {
-          "name": "Iamax1",
-          "value": "最大阳极平均电流"
-        },
-        {
-          "name": "Iamax2",
-          "value": "最大阳极电流峰值"
-        }
+      "supplement": {
+        "Izl": "C=8uF, Ra=11KR时",
+        "Ie": "Ua=20V时",
+        "Ifk": "Ufk=±10V时",
+        "ra": "被测二极管阳极电压为-300V，未测二极管阳极电压为0V时"
+      },
+      "translation": {
+        "Iamax1": "最大阳极平均电流",
+        "Iamax2": "最大阳极电流峰值"
+      },
+      "imgs": [
       ]
     },
     {
@@ -910,11 +852,10 @@
         "A2max": "500g",
         "Tbmax": "170℃"
       },
-      "supplement": [
-        {
-          "to": "Iao",
-          "content": "Uf=6.3V, Ua=0V, Ra=40KR时"
-        }
+      "supplement": {
+        "Iao": "Uf=6.3V, Ua=0V, Ra=40KR时"
+      },
+      "imgs": [
       ]
     },
     {
@@ -947,30 +888,20 @@
         "Uamax1": "100V",
         "Uamax2": "250V"
       },
-      "supplement": [
-        {
-          "to": "Iao",
-          "content": "Uf=6.3V, Ua=0V, Ra=40KR时"
-        }
-      ],
-      "special_translation": true,
-      "translation": [
-        {
-          "name": "Iamax1",
-          "value": "最大阳极电流峰值"
-        },
-        {
-          "name": "Iamax2",
-          "value": "最大阳极电流平均值"
-        },
-        {
-          "name": "Uamax1",
-          "value": "最大阳极电压峰值（工作时）"
-        },
-        {
-          "name": "Uamax2",
-          "value": "最大阳极电压峰值（空载时）"
-        }
+      "supplement": {
+        "S": "dU=0.2V时",
+        "Ifk": "Uf=14.5V, Ufk=±100V时",
+        "Iak": "Uf=14.5V, Ua=-100V, Ua1a2=-100V时",
+        "Ia1a2": "当Uf=14.5V时"
+      },
+      "translation": {
+        "Iamax1": "最大阳极电流峰值",
+        "Iamax2": "最大阳极电流平均值",
+        "Uamax1": "最大阳极电压峰值（工作时）",
+        "Uamax2": "最大阳极电压峰值（空载时）",
+        "dUj": "两管截止电压差"
+      },
+      "imgs": [
       ]
     }
   ]

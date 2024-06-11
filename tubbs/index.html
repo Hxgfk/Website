@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Tubbs</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="../lib/lodash.js"></script>
 </head>
 <body>
 <div id="c_search">
@@ -15,7 +16,7 @@
             <input placeholder="输入型号或者参数表达式以搜索电子管..." type="text" id="inp_search" autocomplete="off" class="suggestion-focus">
             <div id="suggestions-list"></div>
         </label>
-        <button id="search_btn" onclick="">搜索</button>
+        <button id="search_btn" onclick="gotoMainPage()">搜索</button>
     </span>
     </div>
 </div>
@@ -27,8 +28,13 @@
 </div>
 <script src="index.js"></script>
 <script>
-    load();
+    loadTubeData(null);
     load2();
+    document.addEventListener("keypress", function (e) {
+        if (e.code === "Enter" || e.code === "NumpadEnter") {
+            gotoMainPage();
+        }
+    });
 </script>
 </body>
 </html>

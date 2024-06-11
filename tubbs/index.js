@@ -1,6 +1,5 @@
 const input = document.getElementById('inp_search');
 const suggestions = document.getElementById('suggestions-list');
-let timeout_id = 0;
 let tubes = null;
 
 function parseBaseExp(inputString) {
@@ -89,17 +88,17 @@ function convertPhysicValue(value1, value2) {
     }
 }
 
-function searchTube(text, shouldByexp, callback) {
-    for (const tube of tubes) {
+function searchTube(text, shouldByexp) {
+    return _.filter(tubes, e => {
         if (shouldByexp) {
             let exps = parseBaseExp(text);
             let pass_count = 0;
             for (let i=0;i<exps.length;i++) {
                 let exp = exps[i];
-                if (!Object.hasOwn(tube.args, exp.name)) {
+                if (!Object.hasOwn(e.args, exp.name)) {
                     continue;
                 }
-                let v1 = tube.args[exp.name];
+                let v1 = e.args[exp.name];
                 let v2 = String(completeDataVal(v1)).toUpperCase();
                 let vals = convertPhysicValue(exp.value.toUpperCase(), v2);
                 if (vals == null) {
@@ -142,80 +141,80 @@ function searchTube(text, shouldByexp, callback) {
                         }
                 }
             }
-            if (pass_count === exps.length) {
-                callback(tube);
-            }
+            return pass_count === exps.length;
         }
-        if (tube.name.toUpperCase().startsWith(text.toUpperCase())) {
-            callback(tube);
-        } else if (tube.type.includes(text.toUpperCase())) {
-            callback(tube);
-        } else if (tube.maker.includes(text.toUpperCase())) {
-            callback(tube);
-        } else if (tube.use.includes(text)) {
-            callback(tube);
-        }
-    }
+        if (e.name.toUpperCase().startsWith(text.toUpperCase())) {
+            return true;
+        } else if (e.type.includes(text.toUpperCase())) {
+            return true;
+        } else if (e.maker.includes(text.toUpperCase())) {
+            return true;
+        } else return e.use.includes(text);
+    });
 }
 
+function addSuggestion(tube0) {
+    const elm = document.createElement("p");
+    elm.classList.add("suggestion");
+    elm.classList.add("suggestion-focus");
+    const name = document.createElement("b");
+    name.innerText = tube0.name;
+    name.classList.add("suggestion-focus");
+    elm.appendChild(name);
+    const maker = document.createElement("i");
+    maker.classList.add("suggestion-maker");
+    maker.classList.add("suggestion-focus");
+    maker.innerHTML = tube0.maker;
+    elm.appendChild(maker);
+    const type = document.createElement("i");
+    type.classList.add("suggestion-type");
+    type.classList.add("suggestion-focus");
+    type.innerHTML = tube0.type;
+    elm.appendChild(type);
+    elm.addEventListener("click", function (e) {
+        e.preventDefault();
+        input.value = tube0.name;
+        suggestions.style.display = 'none';
+    });
+    suggestions.appendChild(elm);
+}
+
+const debounce0 = _.debounce(function () {
+    searchTube(input.value, false).forEach(t => {
+        addSuggestion(t);
+    });
+}, 300);
+
 function completeSearch() {
-    clearTimeout(timeout_id);
-    const inputValue = input.value;
     suggestions.innerHTML = '';
-
-    function addSuggestion(tube0) {
-        const elm = document.createElement("p");
-        elm.classList.add("suggestion");
-        elm.classList.add("suggestion-focus");
-        const name = document.createElement("b");
-        name.innerText = tube0.name;
-        name.classList.add("suggestion-focus");
-        elm.appendChild(name);
-        const maker = document.createElement("i");
-        maker.classList.add("suggestion-maker");
-        maker.classList.add("suggestion-focus");
-        maker.innerHTML = tube0.maker;
-        elm.appendChild(maker);
-        const type = document.createElement("i");
-        type.classList.add("suggestion-type");
-        type.classList.add("suggestion-focus");
-        type.innerHTML = tube0.type;
-        elm.appendChild(type);
-        elm.addEventListener("click", function (e) {
-            e.preventDefault();
-            input.value = tube0.name;
-            suggestions.style.display = 'none';
-        });
-        suggestions.appendChild(elm);
-    }
-
-    timeout_id = setTimeout(function () {
-        if (inputValue.startsWith("#")) {
-            searchTube(inputValue.slice(1), true, addSuggestion);
-        }else {
-            searchTube(inputValue, false, addSuggestion);
-        }
-    }, 150);
-
-    if (inputValue) {
+    if (input.value || !input.value.startsWith("#")) {
         suggestions.style.display = 'block';
     } else {
         suggestions.style.display = 'none';
     }
+    debounce0();
 }
 
-function load() {
+function gotoMainPage() {
+    location.href = "./page.html?tubename=" + input.value;
+}
+
+function loadTubeData(callback) {
     fetch("tubes.json").then((response) => {
         if (!response.ok) {
-            throw new Error(`加载资源失败\nCode: ${response.status} ${response.statusText}\n请刷新重试，如果多次不行请联系管理员`);
+            throw new Error(`加载资源tubes.json失败\nCode: ${response.status} ${response.statusText}\n请刷新重试，如果多次不行请联系管理员`);
         } else {
             return response.json();
         }
     }).then(data0 => {
-        tubes = data0.tube_list;
+        let d =  data0.tube_list;
+        tubes = d;
+        if (callback != null) {
+            callback(d);
+        }
     }).catch(err => {
         console.error(err);
-    })
+    });
 }
 
 function load2() {

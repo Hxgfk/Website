@@ -19,13 +19,17 @@
         }
     ],
     #以下内容只有在有特殊翻译名称用到
-    "special_translation": true  #此项不要做任何修改
-    "translation": [
+    "translation": {
+        "Ua": "最大阳极电压振幅",   #"目标名": "值"
+    },
+    #图片资料
+    "imgs": [
         {
-            "name": "Ua", #目标名称
-            "value": "最大阳极电压振幅" #名称值
+            "name": "屏栅特性曲线", #图片名
+            "path": "./imgs/xxxx"  #路径
         }
     ]
+
 }
 
 
