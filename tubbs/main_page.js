@@ -3,6 +3,8 @@ const search_value_inp = document.getElementById('search_inp');
 const deatil_tube = document.getElementById('tube-deatil');
 const noselect_tube = document.getElementById('tube-noselect');
 const deatil_tube_name = document.getElementById('tube-name');
+const deatil_tube_maker = document.getElementById('tube-maker');
+const deatil_tube_use = document.getElementById('tube-use');
 const deatil_tube_args = document.getElementById('args');
 const deatil_tube_supplements = document.getElementById('supplement_forjs');
 const deatil_tube_supplement_text = document.getElementById('supplement-text');
@@ -27,18 +29,34 @@ function loadSymbolList() {
 
 function clearDeatil() {
     deatil_tube_name.innerHTML = '';
+    deatil_tube_maker.innerHTML = '';
+    deatil_tube_use.innerHTML = '';
     deatil_tube_args.innerHTML = '';
     deatil_tube_supplements.innerHTML = '';
     deatil_tube_imgs.innerHTML = '';
 }
 
 const ArgTransformer = {
-    checkValue: function (k, val) {
-        if (val !== void 0) {
+    replaceValue: function (value) {
+        if (value.startsWith(">=")) {
+            return value.replace(/>=/g, "大于等于");
+        }else if(value.startsWith("<=")) {
+            return value.replace(/<=/g, "小于等于");
+        }else if (value.startsWith('>')) {
+            return value.replace(/>/g, "大于");
+        }else if (value.startsWith('<')) {
+            return value.replace(/</g, "小于");
+        }else {
+            return value;
+        }
+    },
+
+    checkName: function (k, val) {
+        if (val !== void 0 && val) {
             return val;
         }else {
-            console.error("No translation key: "+ k);
-            return "[No Translation Key]";
+            console.error("No translation key or value: "+ k);
+            return "[No translation key or value]";
         }
     },
 
@@ -52,16 +70,22 @@ const ArgTransformer = {
             if (symbols_trans.hasOwnProperty(aname)) {
                 return symbols_trans[aname];
             }else {
-                return this.checkValue(aname, "最大" + symbols_trans[aname.replace(/max/g, '')]);
+                return this.checkName(aname, "最大" + symbols_trans[aname.replace(/max/g, '')]);
             }
         }else if (aname.endsWith("min")) {
             if (symbols_trans.hasOwnProperty(aname)) {
                 return symbols_trans[aname];
             }else {
-                return this.checkValue(aname, "最小" + symbols_trans[aname.replace(/min/g, '')]);
+                return this.checkName(aname, "最小" + symbols_trans[aname.replace(/min/g, '')]);
+            }
+        }else if (aname.endsWith("_all")){
+            if (symbols_trans.hasOwnProperty(aname)) {
+                return symbols_trans[aname];
+            }else {
+                return this.checkName(aname, "平均" + symbols_trans[aname.replace(/_all/g, '')]);
             }
         }else {
-            return this.checkValue(aname, symbols_trans[aname]);
+            return this.checkName(aname, symbols_trans[aname]);
         }
     }
 };
@@ -72,14 +96,17 @@ function setPage(tube) {
     if (!onDeatil) {
         noselect_tube.style.display = "none";
         deatil_tube.style.display = "block";
+        onDeatil = true;
     }
     clearDeatil();
     deatil_tube_name.innerHTML = tube.name;
+    deatil_tube_maker.innerHTML = "品牌：" + tube.maker;
+    deatil_tube_use.innerHTML = "主要作用：" + tube.use;
     const keys = Object.keys(tube.args);
     for (const k of keys) {
         const arg_span_elm = document.createElement("span");
         arg_span_elm.classList.add("arg");
-        arg_span_elm.innerHTML = `(${ArgTransformer.transArgs(k, tube)}-${k}) = ${tube.args[k]}`;
+        arg_span_elm.innerHTML = `(${ArgTransformer.transArgs(k, tube)}-${k}) = ${ArgTransformer.replaceValue(tube.args[k])}`;
         deatil_tube_args.appendChild(arg_span_elm);
     }
     if (tube.hasOwnProperty("supplement")) {
@@ -87,7 +114,7 @@ function setPage(tube) {
         for (const k of Object.keys(tube.supplement)) {
             const supplement_span_elm = document.createElement("span");
             supplement_span_elm.classList.add("supplement");
-            supplement_span_elm.innerHTML = `(${ArgTransformer.transArgs(tube.supplement[k], tube)}-${k})&nbsp;&nbsp;&nbsp;${tube.supplement[k]}`;
+            supplement_span_elm.innerHTML = `(${ArgTransformer.transArgs(k, tube)}-${k})&nbsp;&nbsp;&nbsp;${tube.supplement[k]}`;
             deatil_tube_supplements.appendChild(supplement_span_elm);
         }
     }else {
